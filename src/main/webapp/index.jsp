@@ -60,7 +60,7 @@
         <h5 style="font-family: 'Times New Roman', Times, serif; color:#C6D6F5" class="card-text"><b> Ingrese
             sus DATOS </b></h5>
         <p></p>
-        <form method="post" class="form-signin" action="<%=request.getContextPath()%>/ServletInicio">
+        <form method="post" class="form-signin" action="<%=request.getContextPath()%>/InicioServlet">
             <div class="d-grid gap-2 col-8 mx-auto form-floating mb-3">
                 <input type="numbers" class="form-control" id="codigo" placeholder="Código" name="codigo">
                 <label for="codigo">Usuario</label>

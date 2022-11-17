@@ -1,14 +1,14 @@
 package com.example.lab10.Beans;
 
 public class Credentials {
-    private String numeroDocumento;
+    private int numeroDocumento;
     private String tipoUsuario;
 
-    public String getNumeroDocumento() {
+    public int getNumeroDocumento() {
         return numeroDocumento;
     }
 
-    public void setNumeroDocumento(String numeroDocumento) {
+    public void setNumeroDocumento(int numeroDocumento) {
         this.numeroDocumento = numeroDocumento;
     }
 

@@ -1,14 +1,12 @@
 package com.example.lab10.Daos;
 
+import com.example.lab10.Beans.Clientes;
 import com.example.lab10.Beans.Contratos;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
-public class ClienteDao extends BaseDao{
+public class ClienteDao extends BaseDao {
     //listar los contratos de un cliente
     public ArrayList<Contratos> listarContratos() {
         ArrayList<Contratos> listaContratos = new ArrayList<>();
@@ -19,7 +17,7 @@ public class ClienteDao extends BaseDao{
         try (Connection connection = this.getConnection();
              Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql);) {
-            while(rs.next()){
+            while (rs.next()) {
                 Contratos contratos = new Contratos();
                 contratos.setNroDeContrato(rs.getString(1));
                 contratos.setIdCliente(rs.getInt(2));
@@ -36,9 +34,86 @@ public class ClienteDao extends BaseDao{
     }
 
     //Mostrar cantidad de contratos
+    public ArrayList<Contratos> obtenerListaCantidadContrato() {
+        ArrayList<Contratos> listaCantidadContrato = new ArrayList<>();
+
+        String sql2 = "SELECT * FROM jm_cotr_bis";
+        try (Connection connection = this.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet rs = statement.executeQuery(sql2)
+        ) {
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return listaCantidadContrato;
+    }
 
     //Mostrar Max ExpectedLoss
+    //esta conectado con contrato
+   /* public ArrayList<Contratos> mostrarExpectedLoss()
+    {
+        ArrayList<Contratos> mostrarListaEXLOSS = new ArrayList<>();
+        String sql = "SELECT pd_value FROM jm_values";
+        String sql1 = "SELECT lgd_value FROM jm_values";
+        String sql2 = "SELECT recovery_rate FROM jm_values"; //tasa de recuperación
+
+        try(
+        Connection connection = this.getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet pd = statement.executeQuery(sql);
+        ResultSet lgd = statement.executeQuery(sql1);
+        ResultSet recovery = statement.executeQuery(sql2);
+        Double pd;
+
+            ) {
+            //probablemente, no sé :,)
+            int expectedLoss = 0;
+            expectedLoss =;
+
+
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+            return mostrarListaEXLOSS;
+    }*/
 
     //Buscar Cliente
+    public ArrayList<Clientes> busquedaNombre(String nombre){
+        String sql = "select * from jm_client_bii where g4093_age like ?";
+        String sql1 = "select * from jm_client_bii";
+        ArrayList<Clientes> listaClienteNombre = new ArrayList<>();
+
+        try(Connection conn = this.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);){
+            pstmt.setString(1,"%"+nombre+"%");
+
+            try(ResultSet rs= pstmt.executeQuery();){
+                while (rs.next()){
+                    Clientes clientes = new Clientes();
+                    Contratos contratos = new Contratos();
+                    contratos.setIdCliente(rs.getInt("idCliente"));
+                    clientes.setNombreCliente(rs.getString("nombre"));
+                    clientes.setEdad(rs.getString("edad"));
+                    clientes.setTipoCliente(rs.getString("tipoCliente"));
+                    clientes.setNumeroDocumento(rs.getString("numeroDocumento"));
+
+                    try(Connection connection2 = this.getConnection();
+                        Statement statement = connection2.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+                        ResultSet rs1 = statement.executeQuery(sql1);){
+
+                    } catch (SQLException e){
+                        throw new RuntimeException(e);
+                    }
+
+                }
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return listaClienteNombre;
+    }
+
 
 }

@@ -47,7 +47,7 @@
 <br>
 <center>
     <div class="card mb-3" style="max-width: 58rem; background-color:#00000090">
-            <h1>MOSTRAR PUNTAJE MAXIMO DE EXPECETED LOSS</h1>
+            <h1>MOSTRAR PUNTAJE MÁXIMO DE EXPECETED LOSS</h1>
             <br>
             <br>
         <form class="row g-3 needs-validation" novalidate="">

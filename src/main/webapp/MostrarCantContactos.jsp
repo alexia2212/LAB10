@@ -61,7 +61,7 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Contratos</th>
+                            <th scope="col">Contrato</th>
                             <th scope="col">Estado</th>
                         </tr>
                         </thead>

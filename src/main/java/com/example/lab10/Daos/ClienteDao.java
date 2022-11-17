@@ -2,6 +2,7 @@ package com.example.lab10.Daos;
 
 import com.example.lab10.Beans.Clientes;
 import com.example.lab10.Beans.Contratos;
+import com.example.lab10.DTOS.ExpLossDTO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -51,32 +52,32 @@ public class ClienteDao extends BaseDao {
 
     //Mostrar Max ExpectedLoss
     //esta conectado con contrato
-   /* public ArrayList<Contratos> mostrarExpectedLoss()
+   public ArrayList<ExpLossDTO> mostrarExpectedLoss(int cliente_nro_id)
     {
-        ArrayList<Contratos> mostrarListaEXLOSS = new ArrayList<>();
+        ArrayList<ExpLossDTO> mostrarListaEXLOSS = new ArrayList<>();
         String sql = "SELECT pd_value FROM jm_values";
-        String sql1 = "SELECT lgd_value FROM jm_values";
-        String sql2 = "SELECT recovery_rate FROM jm_values"; //tasa de recuperación
-
+        //tasa de recuperación recovery_rate
+        //Corregir ??
         try(
         Connection connection = this.getConnection();
-        Statement statement = connection.createStatement();
-        ResultSet pd = statement.executeQuery(sql);
-        ResultSet lgd = statement.executeQuery(sql1);
-        ResultSet recovery = statement.executeQuery(sql2);
-        Double pd;
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        ) {
+            preparedStatement.setInt(1, cliente_nro_id);
+            while (resultSet.next()){
+                ExpLossDTO expLossDTO = new ExpLossDTO();
 
-            ) {
-            //probablemente, no sé :,)
-            int expectedLoss = 0;
-            expectedLoss =;
-
+                expLossDTO.setId_contrato(resultSet.getInt(1));
+                expLossDTO.setCliente_nro_id(resultSet.getString(2));
+                expLossDTO.setExpLoss(resultSet.getFloat(3));
+                mostrarListaEXLOSS.add(expLossDTO);
+            }
 
         }catch (SQLException throwables){
             throwables.printStackTrace();
         }
             return mostrarListaEXLOSS;
-    }*/
+    }
 
     //Buscar Cliente
     public ArrayList<Clientes> busquedaNombre(String nombre){

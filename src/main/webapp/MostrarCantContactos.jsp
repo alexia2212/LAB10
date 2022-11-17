@@ -73,7 +73,7 @@
             <p></p>
             <p></p>
             <% if (request.getParameter("error") != null) {%>
-            <div class="text-danger mb-2">Hubo un Error en su Usuario o Contraseña , Vuelva a Ingresar</div>
+            <div class="text-danger mb-2">Hubo un Error en su Codigo o Contraseña , Vuelva a Ingresar</div>
             <% } %>
             <div class="d-grid gap-2 col-3 mx-auto">
                 <button type="submit" class="btn btn-primary">
@@ -86,6 +86,8 @@
     </div>
 </center>
 <br>
+<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio" role="button"
+   style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>

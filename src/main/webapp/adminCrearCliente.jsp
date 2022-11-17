@@ -47,45 +47,44 @@
 <br>
 <center>
     <div class="card mb-3" style="max-width: 58rem; background-color:#00000090">
-        <p></p>
-        <p></p>
-        <h2 style="font-family: 'KrinkesDecorPERSONAL'; color:#E2FAFF" class="card-title"><b>INICIO DE
-            SESIÓN</b></h2>
-        <center>
-            <img src="https://saludpublica.uchile.cl/dam/jcr:1e8f3e0a-5c5e-4087-b942-987580a7bb82/linea-celeste-final.png"
-                 alt="linea" class="card-img" width="90%" height="10%">
-        </center>
-        <p></p>
-        <p></p>
-        <h5 style="font-family: 'Times New Roman', Times, serif; color:#C6D6F5" class="card-text"><b> Ingrese
-            sus DATOS </b></h5>
-        <p></p>
-        <form method="post" class="form-signin" action="<%=request.getContextPath()%>/ServletInicio">
-            <div class="d-grid gap-2 col-8 mx-auto form-floating mb-3">
-                <input type="numbers" class="form-control" id="codigo" placeholder="Código" name="codigo">
-                <label for="codigo">Usuario</label>
-            </div>
-            <div class="d-grid gap-2 col-8 mx-auto form-floating">
-                <input type="password" class="form-control" id="contrasena" placeholder="Contraseña"
-                       name="contrasena">
-                <label for="contrasena">Contraseña</label>
-            </div>
-            <p></p>
-            <p></p>
-            <% if (request.getParameter("error") != null) {%>
-            <div class="text-danger mb-2">Hubo un Error en su Usuario o Contraseña , Vuelva a Ingresar</div>
-            <% } %>
-            <div class="d-grid gap-2 col-3 mx-auto">
-                <button type="submit" class="btn btn-primary">
-                    Ingresar
-                </button>
-            </div>
-        </form>
-        <br>
-    </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Escrbir nombre">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput2" class="form-label">Edad</label>
+            <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="Escribir edad">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput3" class="form-label">Tipo Cliente</label>
+            <input type="email" class="form-control" id="exampleFormControlInput3" placeholder="Natural(N) o Juridica(J)">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput4" class="form-label">Tipo Documento</label>
+            <input type="email" class="form-control" id="exampleFormControlInput4" placeholder="RUC o DNI">
+        </div>
+        <div class="mb-3">
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Numero de Documento</option>
+                <option value="1">123456</option>
+                <option value="2">654123</option>
+                <option value="3">652341</option>
+            </select>
+        </div>
+
     </div>
 </center>
 <br>
+<br>
+<a class="btn btn-primary" href="<%=request.getContextPath()%>/COMPLETAR" role="button"
+   style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> Crear </a>
+
+<div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-primary">< Atrás</button>
+    <button type="button" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-primary">Cerrar sesion</button>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>

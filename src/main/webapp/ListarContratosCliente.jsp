@@ -47,45 +47,45 @@
 <br>
 <center>
     <div class="card mb-3" style="max-width: 58rem; background-color:#00000090">
-        <p></p>
-        <p></p>
-        <h2 style="font-family: 'KrinkesDecorPERSONAL'; color:#E2FAFF" class="card-title"><b>INICIO DE
-            SESIÓN</b></h2>
-        <center>
-            <img src="https://saludpublica.uchile.cl/dam/jcr:1e8f3e0a-5c5e-4087-b942-987580a7bb82/linea-celeste-final.png"
-                 alt="linea" class="card-img" width="90%" height="10%">
-        </center>
-        <p></p>
-        <p></p>
-        <h5 style="font-family: 'Times New Roman', Times, serif; color:#C6D6F5" class="card-text"><b> Ingrese
-            sus DATOS </b></h5>
-        <p></p>
-        <form method="post" class="form-signin" action="<%=request.getContextPath()%>/ServletInicio">
-            <div class="d-grid gap-2 col-8 mx-auto form-floating mb-3">
-                <input type="numbers" class="form-control" id="codigo" placeholder="Código" name="codigo">
-                <label for="codigo">Usuario</label>
-            </div>
-            <div class="d-grid gap-2 col-8 mx-auto form-floating">
-                <input type="password" class="form-control" id="contrasena" placeholder="Contraseña"
-                       name="contrasena">
-                <label for="contrasena">Contraseña</label>
-            </div>
-            <p></p>
-            <p></p>
-            <% if (request.getParameter("error") != null) {%>
-            <div class="text-danger mb-2">Hubo un Error en su Usuario o Contraseña , Vuelva a Ingresar</div>
-            <% } %>
-            <div class="d-grid gap-2 col-3 mx-auto">
-                <button type="submit" class="btn btn-primary">
-                    Ingresar
-                </button>
-            </div>
+        <h1>LISTAR CONTRATOS</h1>
+        <br>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
         <br>
+        <div class="d-grid gap-2">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nro Contrato</th>
+                            <th scope="col">Divisa</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Meses Estado</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>12</td>
+                            <td>N</td>
+                            <td>12345678</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </li>
+            </ul>
+        </div>
     </div>
     </div>
 </center>
 <br>
+<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio" role="button"
+   style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>

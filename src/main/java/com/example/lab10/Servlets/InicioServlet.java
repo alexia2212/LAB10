@@ -5,9 +5,7 @@ import com.example.lab10.Daos.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
-
 import java.io.IOException;
-import java.sql.ResultSet;
 
 @WebServlet(name = "InicioServlet", urlPatterns = {"","/InicioServlet"})
         public class InicioServlet extends HttpServlet {
@@ -47,7 +45,22 @@ import java.sql.ResultSet;
             String nro_docum = request.getParameter("nro_documento");
             String password = request.getParameter("password");
             Credentials userLog = datosDao.validUserPassword(nro_docum,password);
+            if (userLog !=null){
+                HttpSession session = request.getSession();
+                session.setAttribute("userlogged",userLog);
+                if(userLog.getNumeroDocumento()==1){
+                    response.sendRedirect("AdminServlet?action=admin");
+                } else if (userLog.getNumeroDocumento()==2) {
+                    response.sendRedirect(request.getContextPath() + "/ServletCliente?action=cliente");
+                }
+                else{
+                    response.sendRedirect("index");
+                }
+            }
 
+            else {
+                response.sendRedirect(request.getContextPath()+"InicioServlet?action=LogIn&error");
+            }
 
         }
 }

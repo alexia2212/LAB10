@@ -1,6 +1,12 @@
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!doctype html>
+
+<%
+    ArrayList<String> cliente = (ArrayList<String>) request.getAttribute("userID");
+%>
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -48,29 +54,25 @@
 <center>
     <div class="card mb-3" style="max-width: 58rem; background-color:#00000090">
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Escrbir nombre">
+            <form method="post" action="<%= request.getContextPath()%>/IncioServlet?action=crear" class="row">
+                <div class="col-lg-3">
+
+                    <select name="tipo" class="form-control">
+                        <%for (String cli : cliente){%>
+                        <option value="<%=cli%>"><%=cli%></option>
+                        <%}%>
+                    </select>
+
+                </div>
+            </form>
         </div>
         <div class="mb-3">
-            <label for="exampleFormControlInput2" class="form-label">Edad</label>
-            <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="Escribir edad">
+            <label for="exampleFormControlInput2" class="form-label">Password</label>
+            <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="password">
         </div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput3" class="form-label">Tipo Cliente</label>
-            <input type="email" class="form-control" id="exampleFormControlInput3" placeholder="Natural(N) o Juridica(J)">
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput4" class="form-label">Tipo Documento</label>
-            <input type="email" class="form-control" id="exampleFormControlInput4" placeholder="RUC o DNI">
-        </div>
-        <div class="mb-3"> //combobox
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Numero de Documento</option>
-                <option value="1">123456</option>
-                <option value="2">654123</option>
-                <option value="3">652341</option>
-            </select>
-        </div>
+
+
+
 
     </div>
 </center>

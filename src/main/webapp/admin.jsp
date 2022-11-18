@@ -54,12 +54,8 @@
           <table class="table">
             <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Edad</th>
-              <th scope="col">Tipo Cliente</th>
-              <th scope="col">Tipo Documento</th>
-              <th scope="col">Numero Documento</th>
+              <th scope="col">Número de Documento</th>
+              <th scope="col">Password</th>
             </tr>
             </thead>
             <tbody>

@@ -36,9 +36,6 @@ public class AdminDao extends BaseDao{
         return clientes;
     }
 
-
-
-    //esto debe ir en un combobox aaaaa ptm me quiero morir
     //Listar clientes que no estén en la tabla de credentials
     public ArrayList<Clientes> listarClientes() {
         ArrayList<Clientes> listaClientes = new ArrayList<>();

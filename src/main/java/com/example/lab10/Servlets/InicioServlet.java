@@ -42,6 +42,7 @@ import java.io.IOException;
         @Override
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             DatosDao datosDao = new DatosDao();
+            AdminDao adminDao = new AdminDao();
             String nro_docum = request.getParameter("nro_documento");
             String password = request.getParameter("password");
             Credentials userLog = datosDao.validUserPassword(nro_docum,password);

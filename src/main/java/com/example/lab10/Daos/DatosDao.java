@@ -32,8 +32,8 @@ public class DatosDao extends BaseDao{
             pstmt.setInt(1, userID);
             try(ResultSet resultSet = pstmt.executeQuery()){
                 user =new Credentials();
-                user.setTipoUsuario(resultSet.getString(1));
-                user.setNumeroDocumento(resultSet.getInt(2));
+                user.setTipoUsuario(resultSet.getInt(1));
+                user.setNumeroDocumento(resultSet.getString(2));
 
             }
         }catch (SQLException e){
@@ -47,12 +47,14 @@ public class DatosDao extends BaseDao{
         try(Connection connection = this.getConnection();
             PreparedStatement pstm = connection.prepareStatement(sql);
         ){
-            pstm.setString(1,nro_documento);
+            int nro_document = Integer.parseInt(nro_documento);
+            pstm.setInt(1,nro_document);
             pstm.setString(2,password);
             try(ResultSet rs = pstm.executeQuery();) {
                 if(rs.next()){
-                    int userID = rs.getInt(1);
-                    user = this.buscarPorId(userID);
+                    user = new Credentials();
+                    user.setTipoUsuario(rs.getInt(4));
+                    user.setNumeroDocumento(rs.getString(1));
                 }
             }
         }catch (SQLException e){

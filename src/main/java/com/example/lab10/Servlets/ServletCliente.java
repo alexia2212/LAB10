@@ -55,15 +55,10 @@ public class ServletCliente extends HttpServlet {
 
         switch (action){
             case "buscar":
-                String buscar = request.getParameter("buscar");
-                String opcion = request.getParameter("tipo");
-
-                request.setAttribute("opciones", opciones);
-                ArrayList<Clientes> buscaClientes = new ArrayList<>();
-                if(opcion.equals("name ")){
-                    buscaClientes = clienteDao.busquedaNombre(buscar);
-                }
-                request.setAttribute("listaContratos",buscaClientes);
+                String buscar = request.getParameter("numeroDocumento");
+                int id_user = Integer.parseInt(buscar);
+                Clientes clientes = clienteDao.busquedaNombre(id_user);
+                request.setAttribute("listaClientes",clientes);
                 view = request.getRequestDispatcher("MisDatosCliente.jsp");
                 view.forward(request, response);
                 break;

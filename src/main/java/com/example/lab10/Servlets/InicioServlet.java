@@ -20,7 +20,7 @@ import java.io.IOException;
                 switch (action){
                     case "Login":
                         Credentials user = (Credentials) request.getSession().getAttribute("userlogged");
-                        if(user != null && user.getNumeroDocumento() !=0){
+                        if(user != null && user.getNumeroDocumento()!=null){
                             response.sendRedirect(request.getContextPath());
                             System.out.println(":D");
                         }
@@ -42,16 +42,18 @@ import java.io.IOException;
         @Override
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             DatosDao datosDao = new DatosDao();
+            ClienteDao clienteDao = new ClienteDao();
             String nro_docum = request.getParameter("nro_documento");
             String password = request.getParameter("password");
             Credentials userLog = datosDao.validUserPassword(nro_docum,password);
+            Clientes clientes = clienteDao.busquedaNombre(Integer.parseInt(userLog.getNumeroDocumento()));
             if (userLog !=null){
                 HttpSession session = request.getSession();
                 session.setAttribute("userlogged",userLog);
-                if(userLog.getNumeroDocumento()==1){
-                    response.sendRedirect("AdminServlet?action=admin");
-                } else if (userLog.getNumeroDocumento()==2) {
-                    response.sendRedirect(request.getContextPath() + "/ServletCliente?action=cliente");
+                if(userLog.getTipoUsuario()==1){
+                    response.sendRedirect("admin");
+                } else if (userLog.getTipoUsuario()==2) {
+                    response.sendRedirect(request.getContextPath() + "cliente");
                 }
                 else{
                     response.sendRedirect("index");

@@ -80,18 +80,17 @@ public class ClienteDao extends BaseDao {
     }
 
     //Buscar Cliente
-    public ArrayList<Clientes> busquedaNombre(String nombre){
+    public Clientes busquedaNombre(int nro_documento){
         String sql = "select * from jm_client_bii where g4093_age like ?";
-        String sql1 = "select * from jm_client_bii";
-        ArrayList<Clientes> listaClienteNombre = new ArrayList<>();
+        Clientes clientes = null;
 
         try(Connection conn = this.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql);){
-            pstmt.setString(1,"%"+nombre+"%");
+            pstmt.setInt(1,nro_documento);
 
             try(ResultSet rs= pstmt.executeQuery();){
                 while (rs.next()){
-                    Clientes clientes = new Clientes();
+                    clientes = new Clientes();
                     Contratos contratos = new Contratos();
                     contratos.setIdCliente(rs.getInt("idCliente"));
                     clientes.setNombreCliente(rs.getString("nombre"));
@@ -99,13 +98,6 @@ public class ClienteDao extends BaseDao {
                     clientes.setTipoCliente(rs.getString("tipoCliente"));
                     clientes.setNumeroDocumento(rs.getString("numeroDocumento"));
 
-                    try(Connection connection2 = this.getConnection();
-                        Statement statement = connection2.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-                        ResultSet rs1 = statement.executeQuery(sql1);){
-
-                    } catch (SQLException e){
-                        throw new RuntimeException(e);
-                    }
 
                 }
             }
@@ -113,7 +105,7 @@ public class ClienteDao extends BaseDao {
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return listaClienteNombre;
+        return clientes;
     }
 
 

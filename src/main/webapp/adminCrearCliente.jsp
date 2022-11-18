@@ -63,7 +63,7 @@
             <label for="exampleFormControlInput4" class="form-label">Tipo Documento</label>
             <input type="email" class="form-control" id="exampleFormControlInput4" placeholder="RUC o DNI">
         </div>
-        <div class="mb-3">
+        <div class="mb-3"> //combobox
             <select class="form-select" aria-label="Default select example">
                 <option selected>Numero de Documento</option>
                 <option value="1">123456</option>

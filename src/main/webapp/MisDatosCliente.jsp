@@ -1,5 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%@ page import="com.example.lab10.Beans.Clientes" %>
+<jsp:useBean id="listaCliente" scope="request" type="java.util.ArrayList<com.example.lab10.Beans.Clientes>"/>
+<%
+    String searchText = (String) request.getAttribute("searchText");
+%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -49,10 +53,17 @@
     <div class="card mb-3" style="max-width: 58rem; background-color:#00000090">
         <h1>LISTAR CONTRATOS</h1>
         <br>
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+        /search
+        <form method="post" action="<%=request.getContextPath()%>/ServletCliente?action=buscar">
+            <div class="col-auto">
+                <label for="floatingInput" class="col-form-label">Buscar:</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" name="searchText" class="form-control" id="floatingInput"
+                       placeholder="Buscar" value="<%=searchText!=null?searchText:""%>">
+            </div>
         </form>
+
         <br>
         <div class="d-grid gap-2">
             <ul class="list-group">
@@ -68,13 +79,19 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <% int i = 1;
+                            for (Clientes clientes : listaCliente) {%>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>12</td>
-                            <td>N</td>
-                            <td>12345678</td>
+                            <th scope="row"><%=i%></th>
+                            <td><%=clientes.getNombreCliente()%></td>
+                            <td><%=clientes.getEdad()%></td>
+                            <td><%=clientes.getTipoCliente()%></td>
+                            <td><%=clientes.getNumeroDocumento()%></td>
                         </tr>
+                        <%
+                                i++;
+                            }
+                        %>
                         </tbody>
                     </table>
                 </li>

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%@ page import="com.example.lab10.Beans.Contratos" %>
+<jsp:useBean id="listaContratos" scope="request" type="java.util.ArrayList<com.example.lab10.Beans.Contratos>"/>
 <!doctype html>
 <html lang="en">
 <head>
@@ -68,13 +69,19 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <% int i = 1;
+                        for (Contratos contratos : listaContratos) {%>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>12</td>
-                            <td>N</td>
-                            <td>12345678</td>
+                            <th scope="row"><%=i%></th>
+                            <td><%=contratos.getNroDeContrato()%></td>
+                            <td><%=contratos.getDivisa()%></td>
+                            <td><%=contratos.getEstado()%></td>
+                            <td><%=contratos.getMesesEnEseEstado()%></td>
                         </tr>
+                        <%
+                                i++;
+                            }
+                        %>
                         </tbody>
                     </table>
                 </li>

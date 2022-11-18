@@ -53,10 +53,10 @@ ArrayList<String> opciones = (ArrayList<String>) request.getAttribute("opciones"
 <center>
     <div class="card mb-3" style="max-width: 58rem; background-color:#00000090">
         <div class="d-grid gap-2">
-            <a href="<%= request.getContextPath()%>/MisDatosCliente"><button class="btn btn-primary" type="button">Mis Datos</button></a>
-            <a href="<%= request.getContextPath()%>/ListarContratosCliente"><button class="btn btn-primary" type="button">Listar Mis contratos</button></a>
-            <a href="<%= request.getContextPath()%>/MostrarCantContactos"><button class="btn btn-primary" type="button">Mostrar mis contratos</button></a>
-            <a href="<%= request.getContextPath()%>/MostrarPuntMax"><button class="btn btn-primary" type="button">Mostrar mi puntaje</button></a>
+            <a href="<%= request.getContextPath()%>/MisDatosCliente.jsp"><button class="btn btn-primary" type="button">Mis Datos</button></a>
+            <a href="<%= request.getContextPath()%>/ListarContratosCliente.jsp"><button class="btn btn-primary" type="button">Listar Mis contratos</button></a>
+            <a href="<%= request.getContextPath()%>/MostrarCantContactos.jsp"><button class="btn btn-primary" type="button">Mostrar mis contratos</button></a>
+            <a href="<%= request.getContextPath()%>/MostrarPuntMax.jsp"><button class="btn btn-primary" type="button">Mostrar mi puntaje</button></a>
         </div>
     </div>
 </center>

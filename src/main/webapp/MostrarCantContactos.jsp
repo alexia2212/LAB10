@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="com.example.lab10.Beans.Contratos" %>
+<jsp:useBean id="listaContratos" scope="request" type="java.util.ArrayList<com.example.lab10.Beans.Contratos>"/>
 
 <!doctype html>
 <html lang="en">
@@ -66,10 +68,17 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <% int i = 1;
+                            for (Contratos contratos : listaContratos) {%>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>12</td>
+                            <th scope="row"><%=i%></th>
+                            <td><%=contratos.getNroDeContrato()%></td>
+                            <td><%=contratos.getEstado()%></td>
+                        </tr>
+                        <%
+                                i++;
+                            }
+                        %>
                         </tbody>
                     </table>
                 </li>
@@ -79,7 +88,7 @@
     </div>
 </center>
 <br>
-<a class="btn btn-primary" href="<%=request.getContextPath()%>/COMPLETAR" role="button"
+<a class="btn btn-primary" href="<%=request.getContextPath()%>/cliente" role="button"
    style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

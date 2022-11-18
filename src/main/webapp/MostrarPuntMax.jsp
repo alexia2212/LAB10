@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="com.example.lab10.Beans.Contratos" %>
+<%@ page import="com.example.lab10.Beans.Clientes" %>
+<jsp:useBean id="mostrarListaEXLOSS" scope="request" type="java.util.ArrayList<com.example.lab10.Beans.Clientes>"/>
 
 <!doctype html>
 <html lang="en">
@@ -47,18 +50,41 @@
 <br>
 <center>
     <div class="card mb-3" style="max-width: 58rem; background-color:#00000090">
-            <h1>MOSTRAR PUNTAJE MÁXIMO DE EXPECETED LOSS</h1>
-            <br>
-            <br>
-        <form class="row g-3 needs-validation" novalidate="">
-            <div class="col-md-4 position-relative">
-                <label for="validationTooltip01" class="form-label">Puntaje - EXPECETEP LOSS</label>
-                <input type="text" class="form-control" id="validationTooltip01" value="number" required>
-                <div class="valid-tooltip">
-                    Looks good!
-                </div>
-            </div>
+        <h1>MOSTRAR CANTIDAD CONTRATOS</h1>
+        <br>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
+        <br>
+        <div class="d-grid gap-2">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Contrato</th>
+                            <th scope="col">Estado</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% int i = 1;
+                            for (Clientes clientes : mostrarListaEXLOSS) {%>
+                        <tr>
+                            <th scope="row"><%=i%></th>
+                            <td><%=clientes.%></td>
+                        </tr>
+                        <%
+                                i++;
+                            }
+                        %>
+                        </tbody>
+                    </table>
+                </li>
+            </ul>
+        </div>
+    </div>
     </div>
 </center>
 <br>

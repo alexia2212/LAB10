@@ -7,27 +7,27 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "InicioServlet", urlPatterns = {"","/InicioServlet"})
+@WebServlet(name = "InicioServlet", urlPatterns = {"/","/InicioServlet"})
         public class InicioServlet extends HttpServlet {
         @Override
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             String action = request.getParameter("action");
             RequestDispatcher requestDispatcher;
             if(action == null){
-                RequestDispatcher view = request.getRequestDispatcher("index.jsp");
-                view.forward(request,response);
+
+                requestDispatcher = request.getRequestDispatcher("index.jsp");
+                requestDispatcher.forward(request,response);
             }else{
                 switch (action){
                     case "Login":
                         Credentials user = (Credentials) request.getSession().getAttribute("userlogged");
-                        if(user != null && user.getNumeroDocumento()!=null){
+                        if(user != null && !user.getNumeroDocumento().equals("0")){
                             response.sendRedirect(request.getContextPath());
-                            System.out.println(":D");
                         }
                         else{
+                            System.out.println("get2");
                             requestDispatcher = request.getRequestDispatcher("index.jsp");
                             requestDispatcher.forward(request,response);
-                            System.out.println(":o");
                         }
                         break;
                     case "logout":
@@ -42,18 +42,16 @@ import java.io.IOException;
         @Override
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             DatosDao datosDao = new DatosDao();
-            ClienteDao clienteDao = new ClienteDao();
             String nro_docum = request.getParameter("nro_documento");
             String password = request.getParameter("password");
             Credentials userLog = datosDao.validUserPassword(nro_docum,password);
-            Clientes clientes = clienteDao.busquedaNombre(Integer.parseInt(userLog.getNumeroDocumento()));
             if (userLog !=null){
                 HttpSession session = request.getSession();
                 session.setAttribute("userlogged",userLog);
                 if(userLog.getTipoUsuario()==1){
-                    response.sendRedirect("admin");
+                    response.sendRedirect(request.getContextPath() + "/AdminServlet?action=admin");
                 } else if (userLog.getTipoUsuario()==2) {
-                    response.sendRedirect(request.getContextPath() + "cliente");
+                    response.sendRedirect(request.getContextPath() + "/ServletCliente?action=cliente");
                 }
                 else{
                     response.sendRedirect("index");

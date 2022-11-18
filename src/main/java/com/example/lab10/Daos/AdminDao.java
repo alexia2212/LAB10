@@ -7,30 +7,6 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class AdminDao extends BaseDao{
-    public Clientes validarUsuarioPassword(String nro_documento, String password) {
-
-        Clientes clientes = null;
-        String sql = "SELECT g4093_nro_id, password from jm_client_bii credentials WHERE nro_documento = ? AND password = sha2(?,256)";
-
-        try (Connection conn = this.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql);) {
-
-            pstmt.setString(1, nro_documento);
-            pstmt.setString(2, password);
-
-            try (ResultSet rs = pstmt.executeQuery();) {
-                if(rs.next()){
-                    String usuarioId = rs.getString(1);
-                    clientes = this.buscarCliente(usuarioId);
-                }
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        return clientes;
-    }
 
     //Obtener datos del Cliente
     public Clientes buscarCliente(String usuarioId){
@@ -92,7 +68,7 @@ public class AdminDao extends BaseDao{
     //el admin deberá crear la cuenta a sus clientes por lo tanto habrá un
     //formulario donde se Introduzca el número de documento del cliente y su contraseña . Esta información
     //la deben guardar en la tabla de credential . La contraseña debe ser hasheada en la base de datos.
-    public void createCredentialCliente(Clientes clientes, Credentials credentials){
+    public void createCredentialCliente(Clientes clientes, Credentials credentials, String password){
 
         String sql="insert into credentials (nro_documento,password) values (?,sha2(?,256))";
 
@@ -101,7 +77,7 @@ public class AdminDao extends BaseDao{
         ) {
 
             pstmt.setString(1, credentials.getNumeroDocumento());
-            //pstmt.setString(2, credentials.getPassword);
+            pstmt.setString(2, password);
             pstmt.executeUpdate();
 
         } catch (SQLException error) {

@@ -72,7 +72,7 @@
             </div>
             <p></p>
             <p></p>
-            <% if (request.getParameter("error") != null) {%>
+            <% if (request.getParameter("") != null) {%>
             <div class="text-danger mb-2">Hubo un Error en su Usuario o Contraseña , Vuelva a Ingresar</div>
             <% } %>
             <div class="d-grid gap-2 col-3 mx-auto">

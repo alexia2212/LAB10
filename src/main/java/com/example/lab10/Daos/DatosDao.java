@@ -42,19 +42,19 @@ public class DatosDao extends BaseDao{
         return user;
     }
     public Credentials validUserPassword(String nro_documento, String password) {
-        Credentials user = null;
-        String sql = "SELECT * FROM credentials where nro_documento = ? and password= sha2(?,256)";
+        Credentials user = new Credentials();
+        String sql = "SELECT nro_documento, tipoUsuario FROM credentials where nro_documento = ? and password= sha2(?,256)";
         try(Connection connection = this.getConnection();
             PreparedStatement pstm = connection.prepareStatement(sql);
         ){
-            int nro_document = Integer.parseInt(nro_documento);
-            pstm.setInt(1,nro_document);
+            pstm.setString(1,nro_documento);
             pstm.setString(2,password);
             try(ResultSet rs = pstm.executeQuery();) {
                 if(rs.next()){
-                    user = new Credentials();
-                    user.setTipoUsuario(rs.getInt(4));
-                    user.setNumeroDocumento(rs.getString(1));
+                    String userID = rs.getString(1);
+                    int tipoUser = rs.getInt(2);
+                    user.setNumeroDocumento(userID);
+                    user.setTipoUsuario(tipoUser);
                 }
             }
         }catch (SQLException e){
